@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: rgb(196, 196, 196);
+            position:relative;
+        }
+
+        .cube {
+
+            width: 500px;
+            height: 500px;
+            position: absolute;;
+            top: 100px;
+            left: 700px;
+            border-radius: 5%;
+            border: 1px solid rgb(255, 255, 255);  
+            background: white; 
+            box-shadow: 0 0 10px 6px rgba(161, 161, 161, 0.5);         
+        }
+
+        table {
+            text-align: center;
+            position:absolute;
+            top: 25px;
+            left: 22px;
+        }
+        
+        table td {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgb(236, 236, 236);
+            border-radius: 40%;
+            margin: auto;
+        }
+
+        #logo {
+            width: 300px;
+            position: relative;
+            left: 250px;
+            top: 120px;
+            filter: drop-shadow(1px 1px 5px rgb(255, 255, 255))
+        }
+
+        #btn-start {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            top: 250px;
+            left: 500px;
+            border: 2px solid rgb(82, 82, 82);
+            border-radius: 50%;
+            box-shadow: 0 0 10px 6px rgba(161, 161, 161, 0.5);
+            background: linear-gradient(180deg, #fff, rgb(206, 206, 206));
+            color: rgb(0, 0, 0);
+            font-size: 20px;
+
+        }
+        #btn-start:hover {
+            background: rgb(253, 192, 23);
+            color: white;
+            text-shadow: 0 0 10px rgb(109, 109, 109);
+            border: 2px solid rgb(255, 255, 255);
+            box-shadow: inset 0 0 5px 2px rgba(54, 54, 54, 0.5);
+        }
+
+        #score {
+            position: relative;
+            top: 150px;
+            left: 300px;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body> 
+    <div class="cube">
+    <table >
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    </div>
+    <div><img src="./Hawklogo.png" alt="logo" id="logo"></div>
+<input type="button" value="START!" id="btn-start">
+<p id="score">
+    score
+    <span id="text-score">0</span>
+</p>
+<p id="time">
+    Time
+    <span id="game-time">15</span>
+</p>
+
+    <script>
+        const btnStart = document.getElementById('btn-start')
+        const  textScore = document.getElementById('text-score')
+        const gameTimeText = document.getElementById('game-time')
+        const holes = document.getElementsByTagName('td')
+        const td = document.createElement('td')
+        let score = 0
+        let timer = 0
+
+        // for(const hole of holes) {
+        //     hole.style.backgroundColor = 'rgb(255,0,255)'
+        // }
+
+        btnStart.onclick = () => {
+            btnStart.disabled = true
+            score = 0
+            textScore.innerText = score
+
+            isInGame = true
+
+            let gameTime = 15
+            gameTimeText.innerText = 15
+
+            timer = setInterval( () => {
+                gameTime--
+                gameTimeText.innerText = `${gameTime}`
+
+                if ( gameTime === 0) {
+                    clearInterval(timer)
+                    btnStart.disabled = false
+                    alert(`你的分數是 ${score} `)
+
+                    for( const hole of holes) {
+                        hole.style.backgroundColor = `rgb(255, 255, 255)`
+                    }
+                }
+            } ,1000)
+
+            game()
+            // setTimeout(end, 15000)
+
+        }
+
+        const game = () => {
+            
+            const randomR = Math.floor(Math.random()*255)
+            const randomG = Math.floor(Math.random()*255)
+            const randomB = Math.floor(Math.random()*255)
+            const random = Math.floor(Math.random()*100)
+            // const a = `rgb(${randomR+30}, ${randomG+30}, ${randomB+30})` 
+            
+            for(const hole of holes) {                
+                hole.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`                    
+            }                
+                holes[random].style.backgroundColor = `rgb(${randomR + random}, ${randomG + random}, ${randomB + random})`            
+                
+        
+                holes[random].onclick = () => {             
+                    score++
+                    textScore.innerText = score 
+                    // holes.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`                    
+                    // holes[random].innerHTML = '<td></td>'                    
+                                                      
+                    // holes[random].remove() 
+                    // holes[random].innerHTML = '<td></td>' 
+                    // if (holes.length = 99) {                   
+                    // holes[random].parentElement.appendChild(td) 
+                    // }
+                    game()            
+            }                                                              
+            }        
+        
+        
+            // game()
+
+        // const end = () => {
+        //     clearInterval(timer)
+
+        //     btnStart.disabled = false
+        //     alert(`你的分數是 ${score} `)
+        // }
+        
+        // for( const hole of holes ) {
+        //     hole.onclick = () => {
+        //         if(holes.style.backgroundColor = `rgb(${randomR+30}, ${randomG+20}, ${randomB+20})`) {
+        //             score++
+        //             textScore.innerText = score
+        //             game()
+        //         }
+        //     }
+        // }
+
+        
+    </script>
+    
+</body>
+</html>
