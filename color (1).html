@@ -36,6 +36,7 @@
             border: 1px solid rgb(236, 236, 236);
             border-radius: 40%;
             margin: auto;
+            cursor: pointer;
         }
 
         #logo {
@@ -50,12 +51,12 @@
             width: 100px;
             height: 100px;
             position: relative;
-            top: 300px;
+            top: 280px;
             left: 550px;
             border: 2px solid rgb(82, 82, 82);
             border-radius: 50%;
             box-shadow: 0 0 10px 6px rgba(161, 161, 161, 0.5);
-            background: linear-gradient(180deg, #fff, rgb(206, 206, 206));
+            background:  rgb(206, 206, 206);
             color: rgb(0, 0, 0);
             font-size: 20px;
 
@@ -72,24 +73,24 @@
             position: relative;
             top: 160px;
             left: 400px;
-            font-size: 2rem;            
+            font-size: 1rem;            
         }
         #text-score {
             position: absolute;
             top: 40px;
-            left: 15px;
+            left: 0px;
             font-size: 4rem;
         }
         #time{
             position: relative;
-            top: 94px;
-            left: 250px;
-            font-size: 2rem; 
+            top: 128px;
+            left: 260px;
+            font-size: 1rem; 
         }
         #game-time{
             position: absolute;
-            top: 40px;
-            left: 5px;
+            top: 38px;
+            left: 0px;
             font-size: 4rem;
         }
     </style>
@@ -222,11 +223,11 @@
     <div><img src="./Hawklogo.png" alt="logo" id="logo"></div>
 <input type="button" value="START!" id="btn-start">
 <p id="score">
-    score
+    SCORE
     <span id="text-score">0</span>
 </p>
 <p id="time">
-    Time
+    TIME
     <span id="game-time">15</span>
 </p>
 
@@ -261,10 +262,11 @@
                     clearInterval(timer)
                     btnStart.disabled = false
                     alert(`你的分數是 ${score} `)
-
+                    score = 0
                     for( const hole of holes) {
                         hole.style.backgroundColor = `rgb(255, 255, 255)`
                     }
+                    
                 }
             } ,1000)
 
