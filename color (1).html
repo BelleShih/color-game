@@ -111,23 +111,43 @@
             left:1320px;
         }
         #title{
-            color: #FFF;
-            font-size: 1.5rem;
-            letter-spacing: 4px;
-            position: relative;
-            left: 8%;
-            top: -350px;
-        }
-        #highscore{
-            color: #FFF;
-            font-size: 1.5rem;
+            color: rgb(255, 219, 143);
+            font-size: 2rem;
+            font-weight: 800;
             letter-spacing: 4px;
             position: relative;
             left: 5%;
-            top: -350px;
-            font-weight: 600;
+            top: -380px;
+            animation: animation 3s infinite;
         }
-        
+        #highscore{
+            color: rgb(255, 255, 255);
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            position: relative;
+            left: 88%;
+            top: -1100px;
+            font-weight: 600;
+            line-height: 35px;
+        }
+        #hsbg{
+            width: 400px;
+            height: 400px;
+            background: rgb(241, 188, 188);
+            border-radius: 50%;
+            position: absolute;
+            top: -300px;
+            left: 1480px;
+            animation: animation 10s infinite;
+        }
+        @keyframes animation {
+            0%{
+                filter: hue-rotate(0deg);
+            }
+            100%{
+                filter: hue-rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body> 
@@ -267,20 +287,22 @@
     TIME
     <span id="game-time">20</span>
 </p>
+<div id="hsbg"></div>
 <p id="highscore">
     Highscore
-    
-    /player: <span id="text-highplayer"></span>
-    
-    /score: <span id="text-highscore"></span>
+    <br>
+    __________
+    <br>
+       player: <span id="text-highplayer"></span>
+       <br>
+       score: <span id="text-highscore"></span>
   </p>
-
+<!-- <script src="./jquery-3.5.1.js"></script> -->
     <script>
         const btnStart = document.getElementById('btn-start')
         const  textScore = document.getElementById('text-score')
         const gameTimeText = document.getElementById('game-time')
-        const holes = document.getElementsByTagName('td')
-        const td = document.createElement('td')
+        const holes = document.getElementsByTagName('td')        
         
 
         const textHighPlayer = document.getElementById('text-highplayer')
@@ -295,19 +317,13 @@
             highscore = highscoreStorage
             textHighPlayer.innerText = highscore.name
             textHighScore.innerText = highscore.score
-        }
-        
+        }        
 
-        // for(const hole of holes) {
-        //     hole.style.backgroundColor = 'rgb(255,0,255)'
-        // }
-
+       
         btnStart.onclick = () => {
             btnStart.disabled = true
             score = 0
-            textScore.innerText = score
-
-            isInGame = true
+            textScore.innerText = score            
 
             let gameTime = 20
             gameTimeText.innerText = 20
@@ -320,13 +336,60 @@
                 if ( gameTime === 0) {
                     clearInterval(timer)
                     btnStart.disabled = false
-                    alert(`你的分數是 ${score} `)
+
+                    if (score === 1) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 倉鼠 一樣喔！`)
+                    }
+                    else if (score === 2) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 小型蝙蝠 一樣喔！`)
+                    }
+                    else if (score === 3) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 松鼠 一樣喔！`)
+                    }
+                    else if (score === 4) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 海豚 一樣喔！`)
+                    }
+                    else if (score === 5) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 大象 一樣喔！`)
+                    }
+                    else if (score === 6) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 無尾熊 一樣喔！`)
+                    }
+                    else if (score === 7) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 貓頭鷹 一樣喔！`)
+                    }
+                    else if (score === 8) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 兔子 一樣喔！`)
+                    }
+                    else if (score === 9) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 貓 一樣喔！`)
+                    }
+                    else if (score === 10) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 狗 一樣喔！`)
+                    }
+                    else if (score === 11) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 馬 一樣喔！`)
+                    }
+                    else if (score === 12) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 黑猩猩 一樣喔！`)
+                    }
+                    else if (score === 13) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 豹 一樣喔！`)
+                    }
+                    else if (score === 14) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 長頸鹿 一樣喔！`)
+                    }
+                    else if (score >= 15) {
+                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 老鷹 一樣喔！`)
+                    }
+                    
+                    
 
 
-                    if(highscoreStorage === null || highscore.score < score) {
-        
 
-                    const name = prompt('恭喜您贏過99%的人！趕快留下您的名字吧！')
+                    if(highscoreStorage === null || highscore.score < score) {        
+
+                    const name = prompt('恭喜您贏過所有挑戰者！趕快留下您的名字吧！')
                     highscore.score = score
                     highscore.name = name || 'passerby'
 
@@ -335,11 +398,13 @@
                     textHighScore.innerText = highscore.score
 
         
-                    score = 0
+                    
                     for( const hole of holes) {
                         hole.style.backgroundColor = `rgb(255, 255, 255)`
                     }
-                    }
+                }
+                score = 0
+                gameTime = 20
                 }
             } ,1000)
             
@@ -361,7 +426,6 @@
             }                
                 holes[random].style.backgroundColor = `rgb(${randomR + random}, ${randomG + random}, ${randomB + random})`            
                 
-        
                 holes[random].onclick = () => {             
                     score++
                     textScore.innerText = score 
