@@ -14,7 +14,7 @@
 
         body{
             font-family: 'Baloo Tammudu 2', cursive;
-            background: rgb(196, 196, 196);
+            background: #acacac;
             position:relative;
         }
 
@@ -46,10 +46,10 @@
         }
 
         #logo {
-            width: 300px;
+            width: 400px;
             position: relative;
-            left: 20%;
-            top: 200px;
+            left: 7%;
+            top: -400px;
             filter: drop-shadow(1px 1px 5px rgb(160, 160, 160))
         }
 
@@ -110,13 +110,24 @@
             top: 250px;
             left:1320px;
         }
-        #timeline {
-            width: 50px;
-            height: 800px;
-            background: white;
-            position: absolute;
-            top: -120px;
+        #title{
+            color: #FFF;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            position: relative;
+            left: 8%;
+            top: -350px;
         }
+        #highscore{
+            color: #FFF;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            position: relative;
+            left: 5%;
+            top: -350px;
+            font-weight: 600;
+        }
+        
     </style>
 </head>
 <body> 
@@ -245,7 +256,7 @@
     </table>
     </div>
     <div><img src="./Hawklogo.png" alt="logo" id="logo"></div>
-    <div id="timeline"></div>
+    <div id="title">Find the different colors！</div>
 <input type="button" value="START" id="btn-start">
 <p id="score">
     SCORE
@@ -256,6 +267,13 @@
     TIME
     <span id="game-time">20</span>
 </p>
+<p id="highscore">
+    Highscore
+    
+    /player: <span id="text-highplayer"></span>
+    
+    /score: <span id="text-highscore"></span>
+  </p>
 
     <script>
         const btnStart = document.getElementById('btn-start')
@@ -263,9 +281,22 @@
         const gameTimeText = document.getElementById('game-time')
         const holes = document.getElementsByTagName('td')
         const td = document.createElement('td')
-        const timeLine = document.getElementById('timeline')
+        
+
+        const textHighPlayer = document.getElementById('text-highplayer')
+        const textHighScore = document.getElementById('text-highscore')
+
         let score = 0
         let timer = 0
+
+        let highscore = { name: '', score: 0 }
+        let highscoreStorage = JSON.parse(localStorage.getItem('highscore'))
+        if(highscoreStorage !== null) {
+            highscore = highscoreStorage
+            textHighPlayer.innerText = highscore.name
+            textHighScore.innerText = highscore.score
+        }
+        
 
         // for(const hole of holes) {
         //     hole.style.backgroundColor = 'rgb(255,0,255)'
@@ -284,17 +315,31 @@
             timer = setInterval( () => {
                 gameTime--
                 gameTimeText.innerText = `${gameTime}`
-                timeLine.height = `${gameTime*20}`
+                
 
                 if ( gameTime === 0) {
                     clearInterval(timer)
                     btnStart.disabled = false
                     alert(`你的分數是 ${score} `)
+
+
+                    if(highscoreStorage === null || highscore.score < score) {
+        
+
+                    const name = prompt('恭喜您贏過99%的人！趕快留下您的名字吧！')
+                    highscore.score = score
+                    highscore.name = name || 'passerby'
+
+                    localStorage.setItem('highscore', JSON.stringify(highscore))
+                    textHighPlayer.innerText = highscore.name
+                    textHighScore.innerText = highscore.score
+
+        
                     score = 0
                     for( const hole of holes) {
                         hole.style.backgroundColor = `rgb(255, 255, 255)`
                     }
-                    
+                    }
                 }
             } ,1000)
             
@@ -320,37 +365,10 @@
                 holes[random].onclick = () => {             
                     score++
                     textScore.innerText = score 
-                    // holes.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`                    
-                    // holes[random].innerHTML = '<td></td>'                    
-                                                      
-                    // holes[random].remove() 
-                    // holes[random].innerHTML = '<td></td>' 
-                    // if (holes.length = 99) {                   
-                    // holes[random].parentElement.appendChild(td) 
-                    // }
+                    
                     game()            
             }                                                              
-            }        
-        
-        
-            // game()
-
-        // const end = () => {
-        //     clearInterval(timer)
-
-        //     btnStart.disabled = false
-        //     alert(`你的分數是 ${score} `)
-        // }
-        
-        // for( const hole of holes ) {
-        //     hole.onclick = () => {
-        //         if(holes.style.backgroundColor = `rgb(${randomR+30}, ${randomG+20}, ${randomB+20})`) {
-        //             score++
-        //             textScore.innerText = score
-        //             game()
-        //         }
-        //     }
-        // }
+            } 
 
         
     </script>
