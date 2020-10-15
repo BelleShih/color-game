@@ -361,6 +361,10 @@
                 if (gameTime === 0) {
                     clearInterval(timer)
                     btnStart.disabled = false
+
+                    for (const hole of holes) {
+                            hole.style.backgroundColor = `rgb(255, 255, 255)`
+                        }
                     
                     if (score === 1) {
                         alert(`你的分數是 ${score} 分, 你的眼睛等級跟 倉鼠 一樣喔！`)
@@ -405,11 +409,7 @@
                         localStorage.setItem('highscore', JSON.stringify(highscore))
                         textHighPlayer.innerText = highscore.name
                         textHighScore.innerText = highscore.score
-
-
-                        for (const hole of holes) {
-                            hole.style.backgroundColor = `rgb(255, 255, 255)`
-                        }
+                        
                     }
                     score = 0
                     gameTime = 20
