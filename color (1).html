@@ -33,7 +33,7 @@
             border-radius: 5%;
             border: 1px solid rgb(255, 255, 255);
             background: white;
-            box-shadow: 0 0 10px 6px rgba(161, 161, 161, 0.5);
+            box-shadow: 0 0 0px rgba(161, 161, 161, 0.5);
         }
 
         table {
@@ -46,7 +46,7 @@
             width: 50px;
             height: 50px;
             border: 1px solid rgb(236, 236, 236);
-            border-radius: 40%;
+            border-radius: 15px;
             margin: auto;
             cursor: pointer;
         }
@@ -88,7 +88,7 @@
         #score {
             position: relative;
             top: -400px;
-            left: 1400px;
+            left: 1410px;
             font-size: 1rem;
             width: 100px;
         }
@@ -103,7 +103,7 @@
         #time {
             position: relative;
             top: -600px;
-            left: 1350px;
+            left: 1360px;
             font-size: 1rem;
             color: white;
             width: 100px;
@@ -114,6 +114,12 @@
             font-size: 6rem;
             color: white;
         }
+        .score-border{
+            width: 300px;
+            height: 500px;
+            border: 1px solid #000000;
+            position: absolute;
+        }
 
         #line {
             width: 200px;
@@ -121,7 +127,7 @@
             background-image: linear-gradient(45deg, #FFF 50%, #000 50%);
             position: absolute;
             top: 480px;
-            left: 1600px;
+            left: 1605px;
         }
 
         #title {
@@ -151,13 +157,13 @@
 
         #hsbg {
             width: 300px;
-            height: 350px;
-            background: black;
-            /* border-radius: 50%; */
-
+            height: 900px;
+            background-image: linear-gradient( 180deg, rgba(0,0,0,1) 40%,rgba(255,255,255,0)40%);
+            border: 2px solid rgb(0, 0, 0);  
             position: absolute;
             top: -200px;
             left: 1550px;
+            z-index: -100;
             /* animation: animation 10s infinite; */
         }
 
@@ -301,6 +307,7 @@
     <img src="./Hawklogo.png" alt="logo" id="logo">
     <div id="title">Find the different colors！</div>
     <input type="button" value="START" id="btn-start">
+    
     <span id="score">
         SCORE
         <span id="text-score">0</span>
@@ -310,6 +317,7 @@
         TIME
         <span id="game-time">20</span>
     </span>
+
     <div id="hsbg"></div>
     <div id="highscore">
         Highscore
@@ -320,7 +328,7 @@
         <br>
         score: <span id="text-highscore"></span>
     </div>
-    <!-- <script src="./jquery-3.5.1.js"></script> -->
+  
     <script>
         const btnStart = document.getElementById('btn-start')
         const textScore = document.getElementById('text-score')
@@ -416,26 +424,26 @@
                 }
             }, 1000)
             game()
-        }
-
+        }                       
+        
         const game = () => {
             const randomR = Math.floor(Math.random() * 255)
             const randomG = Math.floor(Math.random() * 255)
             const randomB = Math.floor(Math.random() * 255)
-            const random = Math.floor(Math.random() * 100)
-            // const a = `rgb(${randomR+30}, ${randomG+30}, ${randomB+30})` 
-
+            const random = Math.floor(Math.random() * 100)            
+            
             for (const hole of holes) {
                 hole.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
-            }
+            }             
+            
             holes[random].style.backgroundColor =
-                `rgb(${randomR + random}, ${randomG + random}, ${randomB + random})`
+                `rgb(${randomR + random}, ${randomG + random}, ${randomB + random})`              
 
             holes[random].onclick = () => {
-                score++
+                score++                
                 textScore.innerText = score
                 holes[random].onclick = null
-
+                
                 game()
             }
         }
