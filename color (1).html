@@ -29,7 +29,8 @@
             background: #000;
             border-radius: 40px;
             /* box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.8); */
-            border: 10px solid white;            
+            border: 10px solid white;    
+            box-shadow: 0 0 10px 5px rgba(0,0,0,0.2);        
         }
         #circle{
             width: 500px;
@@ -395,21 +396,21 @@
                 if (gameTime === 0) {
                     clearInterval(timer)
                     btnStart.disabled = false
-                    a = 150
+                    a = 180
 
                     for (const hole of holes) {
                             hole.style.backgroundColor = `rgb(255, 255, 255)`
                     }
                     
-                    let animal = [ "倉鼠", "小型蝙蝠", "松鼠", "海豚", "大象", "無尾熊", "貓頭鷹", "兔子", "貓", "狗", "馬", "黑猩猩", "豹", "長頸鹿", "隼", "老鷹" ]
+                    let animal = [ "倉鼠", "小型蝙蝠", "松鼠", "海豚", "大象", "無尾熊", "貓頭鷹", "兔子", "浣熊", "狐狸", "貓", "狗", "山羊", "西伯利亞哈士奇", "馬", "黑猩猩", "獅子", "豹", "長頸鹿", "梟", "隼", "老鷹" ]
 
                     for (let i=1; i<=animal.length; i++) {
                         if ( score === i ) {
                             alert(`你的分數是 ${score} 分, 你的眼睛等級跟 ${ animal[i-1]} 一樣喔！`)
                         }
                     }
-                    if ( score > 15 ) {
-                            alert(`你的分數是 ${score} 分, 你的眼睛等級跟 ${ animal[15]} 一樣喔！`)
+                    if ( score > 21 ) {
+                            alert(`你的分數是 ${score} 分, 你的眼睛等級跟 ${ animal[21]} 一樣喔！`)
                     }  
 
                     if (highscoreStorage === null || highscore.score < score) {
@@ -436,7 +437,7 @@
             const randomB = Math.floor(Math.random() * 255)
             const random = Math.floor(Math.random() * 100)            
            
-           a -= 6
+           a -= 8
             for (const hole of holes) {
                 hole.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
             }             
