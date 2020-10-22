@@ -27,7 +27,7 @@
             height: 850px;
             /* margin-top: 50px; */
             background: #000;
-            border-radius: 30px;
+            border-radius: 40px;
             /* box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.8); */
             border: 10px solid white;            
         }
@@ -58,7 +58,7 @@
             margin: auto;
             position:absolute;
             top: 24px;
-            left: 23px;
+            left: 22px;
         }
 
         table td {
@@ -366,6 +366,7 @@
 
         let score = 0
         let timer = 0
+        let a = 150
 
         let highscore = {
             name: '',
@@ -394,44 +395,22 @@
                 if (gameTime === 0) {
                     clearInterval(timer)
                     btnStart.disabled = false
+                    a = 150
 
                     for (const hole of holes) {
                             hole.style.backgroundColor = `rgb(255, 255, 255)`
-                        }
-                    
-                    if (score === 1) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 倉鼠 一樣喔！`)
-                    } else if (score === 2) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 小型蝙蝠 一樣喔！`)
-                    } else if (score === 3) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 松鼠 一樣喔！`)
-                    } else if (score === 4) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 海豚 一樣喔！`)
-                    } else if (score === 5) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 大象 一樣喔！`)
-                    } else if (score === 6) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 無尾熊 一樣喔！`)
-                    } else if (score === 7) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 貓頭鷹 一樣喔！`)
-                    } else if (score === 8) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 兔子 一樣喔！`)
-                    } else if (score === 9) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 貓 一樣喔！`)
-                    } else if (score === 10) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 狗 一樣喔！`)
-                    } else if (score === 11) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 馬 一樣喔！`)
-                    } else if (score === 12) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 黑猩猩 一樣喔！`)
-                    } else if (score === 13) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 豹 一樣喔！`)
-                    } else if (score === 14) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 長頸鹿 一樣喔！`)
-                    } else if (score >= 15) {
-                        alert(`你的分數是 ${score} 分, 你的眼睛等級跟 老鷹 一樣喔！`)
                     }
+                    
+                    let animal = [ "倉鼠", "小型蝙蝠", "松鼠", "海豚", "大象", "無尾熊", "貓頭鷹", "兔子", "貓", "狗", "馬", "黑猩猩", "豹", "長頸鹿", "隼", "老鷹" ]
 
-                    // alert(`你的分數是 ${score} 分, 你的眼睛等級跟 ${animal} 一樣喔！`)
+                    for (let i=1; i<=animal.length; i++) {
+                        if ( score === i ) {
+                            alert(`你的分數是 ${score} 分, 你的眼睛等級跟 ${ animal[i-1]} 一樣喔！`)
+                        }
+                    }
+                    if ( score > 15 ) {
+                            alert(`你的分數是 ${score} 分, 你的眼睛等級跟 ${ animal[15]} 一樣喔！`)
+                    }  
 
                     if (highscoreStorage === null || highscore.score < score) {
 
@@ -457,13 +436,14 @@
             const randomB = Math.floor(Math.random() * 255)
             const random = Math.floor(Math.random() * 100)            
            
+           a -= 6
             for (const hole of holes) {
                 hole.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
             }             
             
             holes[random].style.backgroundColor =
-                `rgb(${randomR + random}, ${randomG + random}, ${randomB + random})`              
-            
+                `rgb(${randomR + a}, ${randomG + a}, ${randomB + a})`              
+            console.log(a)
             
             holes[random].onclick = () => {
                 score++                
