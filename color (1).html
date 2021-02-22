@@ -40,7 +40,6 @@
             position: relative;
             top: -5%;
             left: 25%;
-
         }
         .cube {       
             width: 600px;
@@ -344,6 +343,7 @@
         <span id="game-time">20</span>
     </p>
 
+
     <div id="hsbg"></div>
     <div id="highscore">
         Highscore
@@ -360,15 +360,12 @@
         const textScore = document.getElementById('text-score')
         const gameTimeText = document.getElementById('game-time')
         const holes = document.getElementsByTagName('td')
-
-
         const textHighPlayer = document.getElementById('text-highplayer')
         const textHighScore = document.getElementById('text-highscore')
 
         let score = 0
         let timer = 0
         let a = 150
-
         let highscore = {
             name: '',
             score: 0
@@ -379,7 +376,6 @@
             textHighPlayer.innerText = highscore.name
             textHighScore.innerText = highscore.score
         }
-
         btnStart.onclick = () => {
             btnStart.disabled = true
             score = 0
@@ -403,7 +399,6 @@
                     }
                     
                     let animal = [ "倉鼠", "小型蝙蝠", "松鼠", "海豚", "大象", "無尾熊", "貓頭鷹", "兔子", "浣熊", "狐狸", "貓", "狗", "山羊", "西伯利亞哈士奇", "馬", "黑猩猩", "獅子", "豹", "長頸鹿", "梟", "隼", "老鷹" ]
-
                     for (let i=1; i<=animal.length; i++) {
                         if ( score === i ) {
                             alert(`你的分數是 ${score} 分, 你的眼睛等級跟 ${ animal[i-1]} 一樣喔！`)
@@ -435,9 +430,8 @@
             const randomR = Math.floor(Math.random() * 255)
             const randomG = Math.floor(Math.random() * 255)
             const randomB = Math.floor(Math.random() * 255)
-            const random = Math.floor(Math.random() * 100)            
-           
-           a -= 8
+            const random = Math.floor(Math.random() * 100)
+            a -= 8
             for (const hole of holes) {
                 hole.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
             }             
